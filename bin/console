@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Create the Application
+$application = new Symfony\Component\Console\Application;
+
+// Register all Commands
+$application->add(new App\Command\HashPasswordCommand);
+$application->add(new App\Command\RedisConnectCommand);
+$application->add(new App\Command\RedisDeleteCommand);
+$application->add(new App\Command\CheckKeyCommand);
+$application->add(new App\Command\RedisSetCommand);
+$application->add(new App\Command\RedisGetCommand);
+
+// Run it
+$application->run();
