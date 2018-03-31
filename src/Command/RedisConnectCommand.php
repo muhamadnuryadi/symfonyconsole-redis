@@ -33,7 +33,7 @@ final class RedisConnectCommand extends Command
         ]);
 
         $output->writeln(sprintf(
-            'Koneksi: %s', $client->auth('')
+            'Koneksi: %s', $client->ping()
         ));
 
         
@@ -62,7 +62,6 @@ final class CheckKeyCommand extends Command
             'scheme' => 'tcp',
             'host'   => '127.0.0.1',
             'port'   => 6379,
-            'password'   => '',
         ]);
 
         $output->writeln(sprintf(
@@ -96,7 +95,6 @@ final class RedisDeleteCommand extends Command
             'scheme' => 'tcp',
             'host'   => '127.0.0.1',
             'port'   => 6379,
-            'password'   => '',
         ]);
 
         $output->writeln(sprintf(
@@ -129,10 +127,7 @@ final class RedisSetCommand extends Command
             'scheme' => 'tcp',
             'host'   => '127.0.0.1',
             'port'   => 6379,
-            'password'   => '',
         ]);
-
-        
 
         $array = array(
 
@@ -143,11 +138,6 @@ final class RedisSetCommand extends Command
         );
 
         $encode_message =json_encode($array);
-
-        // $redis->SET("messages",$encode_message);
-
-        // $getMessages = $redis ->GET("messages");
-        // $decodeMessages = json_decode($getMessages,true);
 
         $output->writeln(sprintf(
             'data : %s', $client->set("messages",$encode_message)
@@ -165,7 +155,7 @@ final class RedisGetCommand extends Command
     {
         $this->setName('redis:get');
         $this->setDescription('Get data key redis');
-        $this->addArgument('keys', InputArgument::REQUIRED, 'Silahkan masukan keys.');
+        // $this->addArgument('keys', InputArgument::REQUIRED, 'Silahkan masukan keys.');
     }
 
     /**
@@ -178,7 +168,6 @@ final class RedisGetCommand extends Command
             'scheme' => 'tcp',
             'host'   => '127.0.0.1',
             'port'   => 6379,
-            'password'   => '',
         ]);
 
         $getMessages = $client->get($keys);
